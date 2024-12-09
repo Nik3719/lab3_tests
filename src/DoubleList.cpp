@@ -52,7 +52,9 @@ DoubleList::DoubleList(int capacity) : head(nullptr), tail(nullptr)
 void DoubleList::PRINT()
 {
     if (head == nullptr)
-        return;
+    {
+        throw std::runtime_error("List is empty");
+    }
     DNode *current = head;
     while (current != tail)
     {
@@ -63,12 +65,11 @@ void DoubleList::PRINT()
     cout << "\n";
 }
 
-void DoubleList::LDDELH()
+string DoubleList::LDDELH()
 {
     if (head == nullptr)
     {
-        cout << "list empty\n";
-        return;
+        return "list empty\n";
     }
     len--;
     if (head == tail)
@@ -76,12 +77,13 @@ void DoubleList::LDDELH()
         delete head;
         head = nullptr;
         tail = nullptr;
-        return;
+        return "0";
     }
     DNode *temporary = head;
     head = head->next;
     head->prev = nullptr;
     delete temporary;
+    return "0";
 }
 
 void DoubleList::LDDELT()
@@ -146,7 +148,7 @@ string DoubleList::LDDELV(string elem)
                 delete current;
             }
 
-            len--;                                    // Уменьшаем длину списка
+            len--;      // Уменьшаем длину списка
             return "0"; // Сообщение об успешном удалении
         }
         current = current->next;

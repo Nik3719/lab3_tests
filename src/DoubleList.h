@@ -17,7 +17,7 @@ public:
     ~DoubleList();
     void LDPUSHH(string elem);
     void LDPUSHT(string elem);
-    void LDDELH();
+    string LDDELH();
     void LDDELT();
     void PRINT();
     string LDDELV(string elem);

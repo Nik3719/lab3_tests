@@ -80,6 +80,21 @@ run: all
 # Генерация покрытия кода
 coverage: run
 	lcov --capture --directory $(BUILD_DIR) --output-file coverage.info --ignore-errors inconsistent
-	cat coverage.info | c++filt > coverage_demangled.info
+	#lcov --remove coverage.info ../src/json.hpp --output-file coverage_filtered.info
+	cat coverage_filtered.info | c++filt > coverage_demangled.info
 	genhtml coverage.info --output-directory $(COVERAGE_DIR)
 	@echo Coverage report generated at $(COVERAGE_DIR)/index.html
+# coverage: run
+# 	# Собираем данные покрытия
+# 	lcov --capture --directory $(BUILD_DIR) --output-file coverage.info --ignore-errors inconsistent
+	
+# 	# Фильтруем файлы, которые не должны попасть в отчёт (например, исключаем json.hpp)
+# 	lcov --remove coverage.info '*/json.hpp'/* --output-file coverage_filtered.info
+	
+# 	# Преобразуем имена функций (деманглим)
+# 	cat coverage.info | c++filt > coverage_demangled.info
+	
+# 	# Генерация HTML отчёта из отфильтрованных данных
+# 	genhtml coverage_filtered.info --output-directory $(COVERAGE_DIR)
+# 	@echo Coverage report generated at $(COVERAGE_DIR)/index.html
+
