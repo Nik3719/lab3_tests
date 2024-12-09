@@ -23,21 +23,18 @@ class Tree
     TreeNode *RightOrLeft(TreeNode *node, int &value);
     int countNodes(TreeNode *node);
     bool isComplete(TreeNode *node, int index, int numberNodes);
-    int height(TreeNode *node);
+    int unsafeHeight(TreeNode *node);
     TreeNode *findNode(TreeNode *node, const int &value);
     void unsafePrint(TreeNode *root, int space = 0);
-
     void LoadLevel(TreeNode *node, int level, DL<int> &levelValues);
 
 public:
     Tree();
     ~Tree();
-
     void TINSERT(int elem);
     bool TSEARCH(int elem);
-
     bool TISCOMPLETE();
-
+    int Height() { return unsafeHeight(root); };
     void PRINT() { unsafePrint(root); }
     DL<DL<int>> getLevels();
 };

@@ -1,13 +1,8 @@
 #include"SingleList.h"
 
-
-
-static string SingleListID = "0";
-
 SingleList::SingleList(int capacity)
 {
     head = nullptr;
-    
 }
 
 SingleList::~SingleList()
@@ -60,25 +55,25 @@ void SingleList::PRINT()
 }
 
 
-void SingleList::LSDELH()
+string SingleList::LSDELH()
 {
     if (head == nullptr)
     {
-        cout << "list is empty" << "\n";
-        return;
+        
+        return "list is empty\n";
     }
     len--;
     Node* temp = head; 
     head = head->next; 
     delete temp;
+    return "0";
 }
 
-void SingleList::LSDELV(string elem)
+string SingleList::LSDELV(string elem)
 {
     if (head == nullptr)
     {
-        cout << "list is empty" << "\n";
-        return;
+        return "list is empty\n";
     }
     len--;
     Node* current = head;
@@ -87,7 +82,7 @@ void SingleList::LSDELV(string elem)
         Node* temp = current;
         head = current->next;
         delete temp;
-        return;
+        return "0";
     }
     Node* previous = nullptr;
     int index = 0;
@@ -100,19 +95,19 @@ void SingleList::LSDELV(string elem)
             Node* temp = current;
             previous->next = current->next; 
             delete temp;
-            return;
+            return "0";
         }
         previous = current;
         current = current->next;
         index++;
         
     }
-    cout << "There is no such elem\n";
+    return "There is no such elem\n";
 }
 
 string SingleList::LSGET(int index)
 {
-    if (index < 0) 
+    if (index < 0 || index >= this->len) 
     {
         return "Такого индекса нет!";
     }
@@ -129,8 +124,6 @@ string SingleList::LSGET(int index)
         current = current->next;
         currentIndex++;
     }
-
-    return "������ ������� �� ������� ������.";
 }
 
 int SingleList::LISINDEX(string elem)

@@ -1,3 +1,4 @@
+#pragma once
 #include "stack.h"
 #include <gtest/gtest.h>
 #include <sstream>

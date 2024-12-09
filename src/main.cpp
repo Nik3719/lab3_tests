@@ -15,6 +15,11 @@
 #include "testArray.h"
 #include "testStack.h"
 #include "testQueue.h"
+#include"testTree.h"
+#include"testSingleList.h"
+#include"testDoubleList.h"
+
+
 
 
 int globalArgc;

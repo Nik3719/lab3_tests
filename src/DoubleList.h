@@ -20,7 +20,7 @@ public:
     void LDDELH();
     void LDDELT();
     void PRINT();
-    void LDDELV(string elem);
+    string LDDELV(string elem);
     int LDISINDEX(string elem);
     string LDGET(int index);
     string &operator[](int index);

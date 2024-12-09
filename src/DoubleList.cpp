@@ -1,13 +1,11 @@
-#include"DoubleList.h"
-
-static string DoubleListID = "0";
+#include "DoubleList.h"
 
 DoubleList::~DoubleList()
 {
-    DNode* current = head;
+    DNode *current = head;
     while (current != nullptr)
     {
-        DNode* nextNode = current->next;
+        DNode *nextNode = current->next;
         delete current;
         current = nextNode;
     }
@@ -16,7 +14,7 @@ DoubleList::~DoubleList()
 void DoubleList::LDPUSHT(string elem)
 {
     len++;
-    DNode* newNode = new DNode(elem);
+    DNode *newNode = new DNode(elem);
     if (head == nullptr)
     {
         head = newNode;
@@ -33,8 +31,8 @@ void DoubleList::LDPUSHT(string elem)
 void DoubleList::LDPUSHH(string elem)
 {
     len++;
-    DNode* newNode = new DNode(elem);
-    if (head == nullptr) 
+    DNode *newNode = new DNode(elem);
+    if (head == nullptr)
     {
         head = newNode;
         tail = newNode;
@@ -51,12 +49,12 @@ DoubleList::DoubleList(int capacity) : head(nullptr), tail(nullptr)
 {
 }
 
-
 void DoubleList::PRINT()
 {
-    if (head == nullptr) return;
-    DNode* current = head;
-    while (current!=tail)
+    if (head == nullptr)
+        return;
+    DNode *current = head;
+    while (current != tail)
     {
         cout << current->data << " ";
         current = current->next;
@@ -73,14 +71,14 @@ void DoubleList::LDDELH()
         return;
     }
     len--;
-    if (head == tail) 
+    if (head == tail)
     {
         delete head;
         head = nullptr;
         tail = nullptr;
         return;
     }
-    DNode* temporary = head;
+    DNode *temporary = head;
     head = head->next;
     head->prev = nullptr;
     delete temporary;
@@ -91,81 +89,77 @@ void DoubleList::LDDELT()
     if (head == nullptr)
     {
         cout << "list empty\n";
-        return; 
+        return;
     }
     len--;
-    DNode* temporary = tail; 
+    DNode *temporary = tail;
 
     if (head == tail)
     {
         delete temporary;
-        head = nullptr; 
+        head = nullptr;
         tail = nullptr;
     }
-    else 
+    else
     {
-        tail = tail->prev; 
-        tail->next = nullptr; 
-        delete temporary; 
+        tail = tail->prev;
+        tail->next = nullptr;
+        delete temporary;
     };
 }
 
-void DoubleList::LDDELV(string elem)
+string DoubleList::LDDELV(string elem)
 {
     if (head == nullptr)
     {
-        cout << "list empty\n";
-        return;
+        return "List is empty\n"; // Сообщение о пустом списке
     }
- 
-    DNode* current = head;
-    int index = 0;
+
+    DNode *current = head;
     while (current != nullptr)
     {
         if (current->data == elem)
         {
-            if (current == head && current == tail)
+            // Если элемент найден
+            if (current == head && current == tail) // Один элемент в списке
             {
                 delete current;
                 head = nullptr;
                 tail = nullptr;
             }
-            else if (current == head)
+            else if (current == head) // Удаляем голову
             {
                 head = head->next;
                 head->prev = nullptr;
                 delete current;
             }
-            else if (current == tail)
+            else if (current == tail) // Удаляем хвост
             {
                 tail = tail->prev;
                 tail->next = nullptr;
                 delete current;
             }
-            else
+            else // Удаляем элемент между головой и хвостом
             {
                 current->prev->next = current->next;
                 current->next->prev = current->prev;
                 delete current;
             }
-            len--;
-            break;
+
+            len--;                                    // Уменьшаем длину списка
+            return "0"; // Сообщение об успешном удалении
         }
         current = current->next;
-        index++;
     }
 
-    if (current == nullptr)
-    {
-        cout << "������ ���\n";
-    }
+    return "Element not found.\n"; // Если элемент не найден
 }
 
 int DoubleList::LDISINDEX(string elem)
 {
-    DNode* current = head;
+    DNode *current = head;
     int counter = 0;
-    while (current!=nullptr)
+    while (current != nullptr)
     {
         if (current->data == elem)
         {
@@ -179,11 +173,15 @@ int DoubleList::LDISINDEX(string elem)
 
 string DoubleList::LDGET(int index)
 {
-    DNode* current = head;
+    if (index >= this->len)
+    {
+        throw out_of_range("Индекс вне диапазона!");
+    }
+    DNode *current = head;
     int counter = 0;
     while (current != nullptr)
     {
-        if (counter==index)
+        if (counter == index)
         {
             return current->data;
         }
@@ -192,19 +190,23 @@ string DoubleList::LDGET(int index)
     }
 }
 
-string& DoubleList::operator[](int index)
+string &DoubleList::operator[](int index)
 {
+    if (index >= this->len)
+    {
+        throw out_of_range("Индекс вне диапазона!");
+    }
     index = mod(index, len);
-    DNode* current = head;
+    DNode *current = head;
     int count = 0;
 
-    while (current != nullptr) {
-        if (count == index) {
+    while (current != nullptr)
+    {
+        if (count == index)
+        {
             return current->data; // ���������� ������ �� ������
         }
         current = current->next;
         count++;
     }
-
-  
 }

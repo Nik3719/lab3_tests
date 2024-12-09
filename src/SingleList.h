@@ -17,8 +17,8 @@ public:
     void LSPUSHT(string elem);
     void LSPUSHH(string);
     void PRINT();
-    void LSDELH();
-    void LSDELV(string elem);
+    string LSDELH();
+    string LSDELV(string elem);
     string LSGET(int index);
     int LISINDEX(string);
     string &operator[](int index);

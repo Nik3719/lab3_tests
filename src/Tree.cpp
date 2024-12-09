@@ -16,6 +16,7 @@ void Tree::Allocation(TreeNode* node)
         Allocation(node->left);
         Allocation(node->right);
         delete node;
+        node = nullptr;
     }
 }
 
@@ -94,14 +95,14 @@ bool Tree::TISCOMPLETE()
 }
 
 
-int Tree::height(TreeNode* node) 
+int Tree::unsafeHeight(TreeNode* node) 
 {
     if (node == nullptr) 
     {
         return 0;
     }
-    int leftHeight = height(node->left);
-    int rightHeight = height(node->right);
+    int leftHeight = unsafeHeight(node->left);
+    int rightHeight = unsafeHeight(node->right);
     if (leftHeight > rightHeight)
     {
         return leftHeight + 1;
@@ -125,26 +126,11 @@ void Tree::unsafePrint(TreeNode* root, int space)
     unsafePrint(root->left, space);
 }
 
-// ��������������� ����� ��� ������ ���� �� ��������
-TreeNode* Tree::findNode(TreeNode* node, const int& value)
-{
-    if (node == nullptr) {
-        return nullptr;
-    }
-    if (node->data == value) {
-        return node;
-    }
-    TreeNode* leftResult = findNode(node->left, value);
-    if (leftResult != nullptr) {
-        return leftResult;
-    }
-    return findNode(node->right, value);
-}
 
 DL<DL<int>> Tree::getLevels() 
 {
     DL<DL<int>> levels;
-    int h = height(root);
+    int h = unsafeHeight(root);
     for (int i = 1; i <= h; i++) 
     {
         DL<int> levelValues;
