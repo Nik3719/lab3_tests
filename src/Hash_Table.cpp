@@ -1,6 +1,5 @@
 #include"Hash_Table.h"
 
-static string HTID = "0";
 Hash_Table::Hash_Table(int size)
 {
 	this->size = size;

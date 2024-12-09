@@ -36,88 +36,8 @@ void LoadInFile(int index, string value, string fileName, string NameStruct)
     json j;
     readFile >> j;
     readFile.close();
-
-
 }
-//void LoadInFile(int index, string value,string fileName)
-//{
-//    ifstream file(fileName);
-//    string data;
-//    while (!file.eof())
-//    {
-//        getline(file, data);
-//    }
-//    file.close();
-//    if (index == -1)
-//    {
-//        data = value + " " + data;
-//        ofstream fwrt(fileName);
-//        fwrt << data;
-//        fwrt.close();
-//        return;
-//    }
-//    int counter = 0;
-//    int len = data.size();
-//    bool alreadyReplace = false;
-//    for (int i = 0; i < len; i++)
-//    {
-//        if (data[i] != ' ')
-//        {
-//            counter++;
-//            if (counter - 1 == index)
-//            {
-//                int indexStartElem = i;
-//                while (data[i] != ' ' && i < len) i++;
-//                int indexEndElem = i;
-//                string newData = "";
-//                bool alreadyVisited = false;
-//                for (int j = 0; j < len; j++)
-//                {
-//                    if (!(j < indexStartElem) && !alreadyVisited)
-//                    {
-//                        newData += value;// +' '
-//                        if (value == "")
-//                        {
-//                            while (data[j++] != ' ' && j < len);
-//                            if (j!=len) j--;
-//                            if (!newData.empty())
-//                            {
-//                                newData.pop_back();
-//                            }
-//                            
-//                       
-//                        }
-//                        //while (j != indexEndElem) j++;
-//                        alreadyVisited = true;
-//                        continue;
-//                    }
-//                    newData += data[j];
-//                }
-//                ofstream fwrite(fileName);
-//                fwrite << newData;
-//                fwrite.close();
-//                alreadyReplace = true;
-//                break;
-//            }
-//            while (data[i] != ' ' &&  i<len) i++;
-//        }
-//    }
-//    if (!alreadyReplace)
-//    {
-//        if (index == 0)
-//        {
-//            data += value;
-//        }
-//        else
-//        {
-//            data += " " + value;
-//        }
-//
-//        ofstream fwr(fileName);
-//        fwr << data;
-//        fwr.close();
-//    }
-//}
+
 
 int ByteToInt(string str)
 {
@@ -149,7 +69,7 @@ void createNewFile(string fileName, string Name)
 bool fileExists(const string& filename) 
 {
     ifstream file(filename);
-    bool res = file.good(); // Проверяем, успешно ли открыт файл
+    bool res = file.good(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     if (res)
     {
         file.close();
@@ -186,10 +106,10 @@ bool containsString(json jArray, string str)
     {
         if (item.is_string() && item.get<string>() == str) 
         {
-            return true; // Найдена строка
+            return true; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         }
     }
-    return false; // Строка не найдена
+    return false; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
 DL<string> split(string str)
@@ -217,13 +137,13 @@ int64_t dg(int64_t base, int64_t exponent)
 {
     long long result = 1;
     while (exponent > 0) {
-        // Если exponent нечетный, умножаем результат на base
+        // пїЅпїЅпїЅпїЅ exponent пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ base
         if (exponent % 2 == 1) {
             result *= base;
         }
-        // Умножаем base на себя
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ base пїЅпїЅ пїЅпїЅпїЅпїЅ
         base *= base;
-        // Делим exponent на 2
+        // пїЅпїЅпїЅпїЅпїЅ exponent пїЅпїЅ 2
         exponent /= 2;
     }
     return result;

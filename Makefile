@@ -69,7 +69,10 @@ clean:
 	$(RM) $(call FIXPATH,$(OBJECTS))
 	$(RM) $(call FIXPATH,$(DEPS))
 	$(RM) -r $(COVERAGE_DIR)
-	$(RM) $(wildcard *.gcda *.gcno *.gcov)
+	# $(RM) $(wildcard *.gcda *.gcno *.gcov)
+	$(RM) $(BUILD_DIR)/*.gcda
+	$(RM) $(BUILD_DIR)/*.gcov
+	$(RM) $(BUILD_DIR)/*.gcno
 	@echo Cleanup complete!
 
 # Запуск тестов
@@ -80,9 +83,10 @@ run: all
 # Генерация покрытия кода
 coverage: run
 	lcov --capture --directory $(BUILD_DIR) --output-file coverage.info --ignore-errors inconsistent
-	#lcov --remove coverage.info ../src/json.hpp --output-file coverage_filtered.info
+	lcov --remove coverage.info include/json.hpp --output-file coverage_filtered.info
 	cat coverage_filtered.info | c++filt > coverage_demangled.info
-	genhtml coverage.info --output-directory $(COVERAGE_DIR)
+
+	genhtml coverage_filtered.info --output-directory $(COVERAGE_DIR)
 	@echo Coverage report generated at $(COVERAGE_DIR)/index.html
 # coverage: run
 # 	# Собираем данные покрытия

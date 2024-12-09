@@ -11,6 +11,7 @@
 #include "Tree.h"
 #include "dict.h"
 #include "interface.h"
+
 #include <gtest/gtest.h>
 #include "testArray.h"
 #include "testStack.h"
@@ -18,6 +19,7 @@
 #include"testTree.h"
 #include"testSingleList.h"
 #include"testDoubleList.h"
+#include"testHash_Table.h"
 
 
 
