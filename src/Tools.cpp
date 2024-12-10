@@ -1,4 +1,4 @@
-#include"Tools.h"
+#include "Tools.h"
 
 int mod(int a, int b)
 {
@@ -9,8 +9,7 @@ int mod(int a, int b)
     return a % b;
 }
 
-
-string PlusOne(string& num)
+string PlusOne(string &num)
 {
     int len = num.size();
     int countLoop = 0;
@@ -38,7 +37,6 @@ void LoadInFile(int index, string value, string fileName, string NameStruct)
     readFile.close();
 }
 
-
 int ByteToInt(string str)
 {
     int res = 0;
@@ -50,7 +48,7 @@ int ByteToInt(string str)
 }
 
 void createNewFile(string fileName, string Name)
-{   
+{
     json j;
     j["Array"] = {};
     j["DoubleList"] = {};
@@ -65,8 +63,7 @@ void createNewFile(string fileName, string Name)
     NewFile.close();
 }
 
-
-bool fileExists(const string& filename) 
+bool fileExists(const string &filename)
 {
     ifstream file(filename);
     bool res = file.good(); // ���������, ������� �� ������ ����
@@ -77,10 +74,10 @@ bool fileExists(const string& filename)
     return res;
 }
 
-bool ValidFile(const string& filename)
+bool ValidFile(const string &filename)
 {
     ifstream file(filename);
-    if (file.peek() == ifstream::traits_type::eof()) 
+    if (file.peek() == ifstream::traits_type::eof())
     {
         return false;
     }
@@ -100,11 +97,11 @@ bool ValidFile(const string& filename)
     return false;
 }
 
-bool containsString(json jArray, string str) 
+bool containsString(json jArray, string str)
 {
-    for (const auto& item : jArray) 
+    for (const auto &item : jArray)
     {
-        if (item.is_string() && item.get<string>() == str) 
+        if (item.is_string() && item.get<string>() == str)
         {
             return true; // ������� ������
         }
@@ -133,12 +130,14 @@ DL<string> split(string str)
     return res;
 }
 
-int64_t dg(int64_t base, int64_t exponent) 
+int64_t dg(int64_t base, int64_t exponent)
 {
     long long result = 1;
-    while (exponent > 0) {
+    while (exponent > 0)
+    {
         // ���� exponent ��������, �������� ��������� �� base
-        if (exponent % 2 == 1) {
+        if (exponent % 2 == 1)
+        {
             result *= base;
         }
         // �������� base �� ����
@@ -147,4 +146,26 @@ int64_t dg(int64_t base, int64_t exponent)
         exponent /= 2;
     }
     return result;
+}
+
+char **copyArgv(int argc, char *argv[])
+{
+    char **argvCopy = new char *[argc]; // Создаем массив указателей
+
+    for (int i = 0; i < argc; ++i)
+    {
+        argvCopy[i] = new char[std::strlen(argv[i]) + 1]; // Выделяем память для строки
+        std::strcpy(argvCopy[i], argv[i]);                // Копируем строку
+    }
+    return argvCopy;
+}
+
+// Освобождение памяти
+void freeArgv(int argc, char **argvCopy)
+{
+    for (int i = 0; i < argc; ++i)
+    {
+        delete[] argvCopy[i]; // Удаляем строки
+    }
+    delete[] argvCopy; // Удаляем массив указателей
 }

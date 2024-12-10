@@ -1,0 +1,19 @@
+{
+    "Array": null,
+    "DoubleList": {
+        "1": [
+            "123"
+        ]
+    },
+    "HT": null,
+    "Queue": {
+        "1": []
+    },
+    "SingleList": null,
+    "Stack": {
+        "1": [
+            "1"
+        ]
+    },
+    "Tree": null
+}

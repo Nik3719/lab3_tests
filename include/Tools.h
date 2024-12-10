@@ -17,3 +17,5 @@ bool containsString(json jArray, string str);
 DL<string> split(string str);
 bool ValidFile(const string& filename);
 int64_t dg(int64_t base, int64_t exponent);
+char **copyArgv(int argc, char *argv[]);
+void freeArgv(int argc, char **argvCopy);

@@ -1,0 +1,18 @@
+{
+    "Array": {
+        "123": [
+            "elem",
+            "elem",
+            "elem1"
+        ],
+        "123iu": [
+            "elem"
+        ]
+    },
+    "DoubleList": null,
+    "HT": null,
+    "Queue": null,
+    "SingleList": null,
+    "Stack": null,
+    "Tree": null
+}

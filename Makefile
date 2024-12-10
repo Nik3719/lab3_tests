@@ -45,6 +45,8 @@ DEPS := $(OBJECTS:.o=.d)
 # Главный бинарник
 OUTPUTMAIN := $(call FIXPATH,$(OUTPUT)/$(MAIN))
 
+ARGS :=
+
 # Основные цели сборки
 all: $(OUTPUT) $(BUILD_DIR) $(MAIN)
 	@echo Executing 'all' complete!
@@ -88,17 +90,4 @@ coverage: run
 
 	genhtml coverage_filtered.info --output-directory $(COVERAGE_DIR)
 	@echo Coverage report generated at $(COVERAGE_DIR)/index.html
-# coverage: run
-# 	# Собираем данные покрытия
-# 	lcov --capture --directory $(BUILD_DIR) --output-file coverage.info --ignore-errors inconsistent
-	
-# 	# Фильтруем файлы, которые не должны попасть в отчёт (например, исключаем json.hpp)
-# 	lcov --remove coverage.info '*/json.hpp'/* --output-file coverage_filtered.info
-	
-# 	# Преобразуем имена функций (деманглим)
-# 	cat coverage.info | c++filt > coverage_demangled.info
-	
-# 	# Генерация HTML отчёта из отфильтрованных данных
-# 	genhtml coverage_filtered.info --output-directory $(COVERAGE_DIR)
-# 	@echo Coverage report generated at $(COVERAGE_DIR)/index.html
 
