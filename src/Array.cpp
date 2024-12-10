@@ -43,7 +43,7 @@ string Array::MINSERT(string elem, int index)
     }
 }
 
-string Array::MGET(int index)
+string Array::MGET(int index) const
 {
 
     if (index >= currentLen)
@@ -127,7 +127,7 @@ Array &Array::operator=(const Array &other)
     return *this;
 }
 
-int Array::MLEN()
+int Array::MLEN() const
 {
     return this->currentLen;
 }

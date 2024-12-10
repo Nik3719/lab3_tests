@@ -18,10 +18,11 @@ public:
     Array(const Array &other);
     Array &operator=(const Array &other);
 
+    int MLEN() const;
+
     void MPUSH(string elem);
     string MINSERT(string elem, int index);
-    string MGET(int index);
-    int MLEN();
+    string MGET(int index) const;
     string MDEL(int index);
     void PRINT();
     string MSET(string elem, int index);

@@ -9,26 +9,7 @@ int mod(int a, int b)
     return a % b;
 }
 
-string PlusOne(string &num)
-{
-    int len = num.size();
-    int countLoop = 0;
-    for (size_t i = len - 1; i >= 0; i--)
-    {
-        if (num[i] < '9')
-        {
-            num = num.substr(0, i) + char(num[i] + 1);
-            string countNull = "";
-            for (int j = 0; j < countLoop; j++)
-            {
-                countNull += '0';
-            }
-            num = num + countNull;
-            return num;
-        }
-        countLoop++;
-    }
-}
+
 void LoadInFile(int index, string value, string fileName, string NameStruct)
 {
     ifstream readFile(fileName);
@@ -130,42 +111,18 @@ DL<string> split(string str)
     return res;
 }
 
-int64_t dg(int64_t base, int64_t exponent)
-{
-    long long result = 1;
-    while (exponent > 0)
-    {
-        // ���� exponent ��������, �������� ��������� �� base
-        if (exponent % 2 == 1)
-        {
-            result *= base;
-        }
-        // �������� base �� ����
-        base *= base;
-        // ����� exponent �� 2
-        exponent /= 2;
-    }
-    return result;
-}
-
-char **copyArgv(int argc, char *argv[])
-{
-    char **argvCopy = new char *[argc]; // Создаем массив указателей
-
-    for (int i = 0; i < argc; ++i)
-    {
-        argvCopy[i] = new char[std::strlen(argv[i]) + 1]; // Выделяем память для строки
-        std::strcpy(argvCopy[i], argv[i]);                // Копируем строку
-    }
-    return argvCopy;
-}
 
 // Освобождение памяти
-void freeArgv(int argc, char **argvCopy)
+
+
+string readFileContent(const string &filename)
 {
-    for (int i = 0; i < argc; ++i)
+    ifstream file(filename);
+    if (!file.is_open())
     {
-        delete[] argvCopy[i]; // Удаляем строки
+        return "";
     }
-    delete[] argvCopy; // Удаляем массив указателей
+    string content((istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+    file.close();
+    return content;
 }

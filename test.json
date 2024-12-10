@@ -1,21 +1,42 @@
 {
     "Array": {
-        "v": [
-            "value",
-            "value",
-            "value",
-            "value",
-            "value",
-            "value",
-            "value",
-            "value",
-            "value"
+        "0": []
+    },
+    "DoubleList": {
+        "123": [
+            "234"
         ]
     },
-    "DoubleList": null,
-    "HT": null,
-    "Queue": null,
-    "SingleList": null,
-    "Stack": null,
-    "Tree": null
+    "HT": {
+        "key": [
+            {
+                "value": "HSET"
+            }
+        ]
+    },
+    "Queue": {
+        "1": [
+            "1"
+        ]
+    },
+    "SingleList": {
+        "": [],
+        "value": []
+    },
+    "Stack": {
+        "12": [],
+        "5": []
+    },
+    "Tree": {
+        "12": [
+            [
+                421
+            ]
+        ],
+        "5": [
+            [
+                0
+            ]
+        ]
+    }
 }
