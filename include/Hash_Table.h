@@ -18,7 +18,7 @@ class Hash_Table
 {
 	HashNode *table;
 	int size = 0;
-		int hashFunc(string key);
+	int hashFunc(string key);
 	void resize(string key, string value);
 
 public:
@@ -28,4 +28,6 @@ public:
 	string HGET(string key);
 	string HDEL(string key);
 	void PRINT();
+	friend void serialize(const Hash_Table &hashTable, const string &filename);
+	friend void deserialize(Hash_Table &hashTable, const string &filename);
 };

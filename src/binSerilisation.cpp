@@ -1,11 +1,4 @@
-#include <fstream>
-#include "Array.h"
-#include "SingleList.h"
-#include "DoubleList.h"
-#include "queue.h"
-#include "stack.h"
-#include "Hash_Table.h"
-#include "Tree.h"
+#include"binSerilisation.h"
 
 void serialize(const Array &array, const string &filename)
 {
@@ -275,5 +268,91 @@ void deserialize(DoubleList &list, const string &filename)
     }
 }
 
+void serialize(const Hash_Table &hashTable, const string &filename)
+{
+    ofstream out(filename, ios::binary);
+    if (!out.is_open())
+    {
+        cerr << "Не удалось открыть файл для записи!" << endl;
+        return;
+    }
 
+    // Сохраняем размер таблицы
+    out.write(reinterpret_cast<const char *>(&hashTable.size), sizeof(int));
 
+    // Сохраняем все элементы таблицы
+    for (int i = 0; i < hashTable.size; i++)
+    {
+        const HashNode &node = hashTable.table[i];
+        size_t keyLen = node.key.size();
+        size_t valueLen = node.value.size();
+
+        // Записываем статус узла
+        out.write(reinterpret_cast<const char *>(&node.isOccupied), sizeof(bool));
+        out.write(reinterpret_cast<const char *>(&node.NoneDeletePresence), sizeof(int));
+
+        // Записываем ключ
+        out.write(reinterpret_cast<const char *>(&keyLen), sizeof(size_t));
+        if (keyLen > 0)
+        {
+            out.write(node.key.c_str(), keyLen);
+        }
+
+        // Записываем значение
+        out.write(reinterpret_cast<const char *>(&valueLen), sizeof(size_t));
+        if (valueLen > 0)
+        {
+            out.write(node.value.c_str(), valueLen);
+        }
+    }
+
+    out.close();
+}
+
+// Функция для бинарной десериализации хэш-таблицы
+void deserialize(Hash_Table &hashTable, const string &filename)
+{
+    ifstream in(filename, ios::binary);
+    if (!in.is_open())
+    {
+        cerr << "Не удалось открыть файл для чтения!" << endl;
+        return;
+    }
+
+    int newSize;
+    in.read(reinterpret_cast<char *>(&newSize), sizeof(int));
+
+    // Чтение элементов таблицы
+    for (int i = 0; i < newSize; i++)
+    {
+        HashNode &node = hashTable.table[i];
+        size_t keyLen, valueLen;
+
+        // Читаем статус узла
+        in.read(reinterpret_cast<char *>(&node.isOccupied), sizeof(bool));
+        in.read(reinterpret_cast<char *>(&node.NoneDeletePresence), sizeof(int));
+
+        // Читаем ключ
+        in.read(reinterpret_cast<char *>(&keyLen), sizeof(size_t));
+        if (keyLen > 0)
+        {
+            char *keyBuffer = new char[keyLen + 1];
+            in.read(keyBuffer, keyLen);
+            keyBuffer[keyLen] = '\0';
+            node.key = keyBuffer;
+            delete[] keyBuffer;
+        }
+
+        // Читаем значение
+        in.read(reinterpret_cast<char *>(&valueLen), sizeof(size_t));
+        if (valueLen > 0)
+        {
+            char *valueBuffer = new char[valueLen + 1];
+            in.read(valueBuffer, valueLen);
+            valueBuffer[valueLen] = '\0';
+            node.value = valueBuffer;
+            delete[] valueBuffer;
+        }
+    }
+    in.close();
+}

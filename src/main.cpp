@@ -11,7 +11,7 @@
 #include "Tree.h"
 #include "dict.h"
 #include "interface.h"
-#include"binSerilisation.h"
+#include "binSerilisation.h"
 
 #include <gtest/gtest.h>
 #include "testArray.h"
@@ -22,6 +22,7 @@
 #include "testDoubleList.h"
 #include "testHash_Table.h"
 #include "testInterface.h"
+#include "testBinSerialization.h"
 
 int globalArgc;
 char **globalArgv;
@@ -30,19 +31,18 @@ char *arg[] = {"--file", "11.json", "--query", "SPUSH 1 3"};
 
 int main(int argc, char *argv[])
 {
-    Queue arr;
-    arr.QPUSH("1");
-    arr.QPUSH("2");
-    arr.QPUSH("3");
-    serialize(arr, "1.bin");
+    // Queue arr;
+    // arr.QPUSH("1");
+    // arr.QPUSH("2");
+    // arr.QPUSH("3");
+    // serialize(arr, "1.bin");
     // deserialize(arr, "1.bin");
     // arr.PRINT();
-    return 0;
-    // globalArgc = argc;
-    // globalArgv = argv;
-    
-    // ::testing::InitGoogleTest(&globalArgc, globalArgv);
-    // int res = RUN_ALL_TESTS();
+    // return 0;
+    globalArgc = argc;
+    globalArgv = argv;
 
-    // return res;
+    ::testing::InitGoogleTest(&globalArgc, globalArgv);
+
+    return RUN_ALL_TESTS();
 }

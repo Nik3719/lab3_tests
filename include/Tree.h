@@ -37,4 +37,6 @@ public:
     int Height() { return unsafeHeight(root); };
     void PRINT() { unsafePrint(root); }
     DL<DL<int>> getLevels();
+    void serialize(const string &filename);
+    void deserialize(const string &filename);
 };
