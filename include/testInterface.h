@@ -271,3 +271,24 @@ TEST(InterfaceTest, TestEmptyHashTable)
     int result = interface(argc, (argv));
     EXPECT_EQ(result, 0); // Ожидаем ошибку, если хеш-таблица пуста
 }
+
+
+TEST(InterfaceTest, TestInsertArray)
+{
+    system("rm test.json");
+    char *argv[] = {"--file", "test.json", "--query", "MINSERT key 0"};
+    int argc = 4;
+
+    int result = interface(argc, (argv));
+    EXPECT_EQ(result, 0); // Ожидаем ошибку, если хеш-таблица пуста
+}
+
+// TEST(InterfaceTest, TestInsertArray)
+// {
+//     system("rm test.json");
+//     char *argv[] = {"--file", "test.json", "--query", "MINSERT key 0"};
+//     int argc = 4;
+
+//     int result = interface(argc, (argv));
+//     EXPECT_EQ(result, 0); // Ожидаем ошибку, если хеш-таблица пуста
+// }

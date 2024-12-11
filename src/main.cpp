@@ -31,14 +31,6 @@ char *arg[] = {"--file", "11.json", "--query", "SPUSH 1 3"};
 
 int main(int argc, char *argv[])
 {
-    // Queue arr;
-    // arr.QPUSH("1");
-    // arr.QPUSH("2");
-    // arr.QPUSH("3");
-    // serialize(arr, "1.bin");
-    // deserialize(arr, "1.bin");
-    // arr.PRINT();
-    // return 0;
     globalArgc = argc;
     globalArgv = argv;
 

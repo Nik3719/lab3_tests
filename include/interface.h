@@ -10,9 +10,17 @@
 #include "stack.h"
 #include "Hash_Table.h"
 #include "Tree.h"
-#include "dict.h"
+// #include "dict.h"
 
 using namespace std;
+
+void FieldIsNull(string const &nameStruct, string const &Name, json &j)
+{
+    if (j[nameStruct][Name].is_null())
+    {
+        j[nameStruct][Name] = json::array();
+    }
+}
 
 void readJson(string const &fileName, json &j)
 {
@@ -414,9 +422,9 @@ void processStack(string const &Name, string const &fileName, DL<string> &querys
     writeInJson(fileName, j);
 }
 
-void processTree(string const &Name, string const &fileName, DL<string> &querys)
-{
-}
+// void processTree(string const &Name, string const &fileName, DL<string> &querys)
+// {
+// }
 
 int interface(int argc, char *argv[])
 {
@@ -482,7 +490,7 @@ int interface(int argc, char *argv[])
 
             if (j["Tree"][Name].is_null())
             {
-                j["Stack"][Name] = json::array();
+                j["Tree"][Name] = json::array();
             }
             else
             {

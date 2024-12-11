@@ -136,19 +136,19 @@ DL<T>::DL(int capacity) : head(nullptr), tail(nullptr)
     }
 }
 
-template <typename T>
-void DL<T>::PRINT()
-{
-    if (head == nullptr) return;
-    DoubleListNode<T>* current = head;
-    while (current!=tail)
-    {
-        cout << current->data << " ";
-        current = current->next;
-    }
-    cout << current->data << " ";
-    cout << "\n";
-}
+// template <typename T>
+// void DL<T>::PRINT()
+// {
+//     if (head == nullptr) return;
+//     DoubleListNode<T>* current = head;
+//     while (current!=tail)
+//     {
+//         cout << current->data << " ";
+//         current = current->next;
+//     }
+//     cout << current->data << " ";
+//     cout << "\n";
+// }
 
 template <typename T>
 void DL<T>::LDDELH()
