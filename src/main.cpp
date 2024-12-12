@@ -23,6 +23,7 @@
 #include "testHash_Table.h"
 #include "testInterface.h"
 #include "testBinSerialization.h"
+#include"testDL.h"
 
 int globalArgc;
 char **globalArgv;

@@ -85,7 +85,8 @@ run: all
 # Генерация покрытия кода
 coverage: run
 	lcov --capture --directory $(BUILD_DIR) --output-file coverage.info --ignore-errors inconsistent
-	lcov --remove coverage.info include/json.hpp --output-file coverage_filtered.info
+
+
 	cat coverage_filtered.info | c++filt > coverage_demangled.info
 
 	genhtml coverage_filtered.info --output-directory $(COVERAGE_DIR)
