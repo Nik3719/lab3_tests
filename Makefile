@@ -83,12 +83,20 @@ run: all
 	@echo Executing 'run: all' complete
 
 # Генерация покрытия кода
+# Генерация покрытия кода
 coverage: run
-	lcov --capture --directory $(BUILD_DIR) --output-file coverage.info --ignore-errors inconsistent
+	@echo "Capturing coverage data..."
+	lcov --capture --directory $(BUILD_DIR) --output-file coverage.info --ignore-errors inconsistent || exit 1
+	
+	@echo "Filtering relevant files for coverage..."
+	lcov --extract coverage.info '*/src/*' --output-file coverage_filtered.info || exit 1
+	
+	@echo "Demangling symbols..."
+	cat coverage_filtered.info | c++filt > coverage_demangled.info || exit 1
+	
+	@echo "Generating HTML coverage report..."
+	genhtml coverage_filtered.info --output-directory $(COVERAGE_DIR) || exit 1
+	
+	@echo "Coverage report generated at $(COVERAGE_DIR)/index.html"
 
-
-	cat coverage_filtered.info | c++filt > coverage_demangled.info
-
-	genhtml coverage_filtered.info --output-directory $(COVERAGE_DIR)
-	@echo Coverage report generated at $(COVERAGE_DIR)/index.html
 

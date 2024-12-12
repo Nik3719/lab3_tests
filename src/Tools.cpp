@@ -10,13 +10,7 @@ int mod(int a, int b)
 }
 
 
-void LoadInFile(int index, string value, string fileName, string NameStruct)
-{
-    ifstream readFile(fileName);
-    json j;
-    readFile >> j;
-    readFile.close();
-}
+
 
 int ByteToInt(string str)
 {
@@ -78,17 +72,7 @@ bool ValidFile(const string &filename)
     return false;
 }
 
-bool containsString(json jArray, string str)
-{
-    for (const auto &item : jArray)
-    {
-        if (item.is_string() && item.get<string>() == str)
-        {
-            return true; // ������� ������
-        }
-    }
-    return false; // ������ �� �������
-}
+
 
 DL<string> split(string str)
 {

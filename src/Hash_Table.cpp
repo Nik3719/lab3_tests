@@ -77,19 +77,11 @@ int Hash_Table::hashFunc(string key)
 
 string Hash_Table::HGET(string key)
 {
-	if (size == 0)
-	{
-		return "hash table if empty\n";
-	}
 	int i = 0;
 	int index = hashFunc(key);
 	int oldIndex = index;
 	while (table[index].isOccupied)
 	{
-		if (table[index].NoneDeletePresence == 1)
-		{
-			return "There is not such key in this table\n";
-		}
 		if (table[index].key == key)
 		{	
 			return table[index].value;
@@ -106,10 +98,6 @@ string Hash_Table::HGET(string key)
 
 string Hash_Table::HDEL(string key)
 {
-	if (size == 0)
-	{
-		return "hash table if empty\n";
-	}
 	int i = 0;
 	int index = hashFunc(key);
 	int oldIndex = index;
